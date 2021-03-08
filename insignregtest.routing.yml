@@ -1,0 +1,47 @@
+insignregtest.insignregtest_form:
+  path: '/insignreg'
+  defaults:
+    _form: '\Drupal\insignregtest\Form\RegistrationForm'
+    _title: 'Registration Form'
+  requirements:
+    _access: 'TRUE'
+  
+codes_list:
+  path: '/admin/content/codes'
+  defaults:
+    _controller: '\Drupal\insignregtest\Controller\AdminController::content'
+  requirements:
+    _permission: 'access codes content'
+
+codes_add:
+  path: '/admin/content/codes/add'
+  defaults:
+    _form: '\Drupal\insignregtest\Form\AddForm'
+    _title: 'Create code'
+  requirements:
+    _permission: 'edit codes content'
+
+codes_edit:
+  path: 'admin/content/codes/edit/{id}'
+  defaults:
+    _form: '\Drupal\insignregtest\Form\AddForm'
+    _title: 'Edit code'
+  requirements:
+    _permission: 'edit codes content'
+
+codes_delete:
+  path: '/admin/content/codesdelete/{id}'
+  defaults:
+    _form: '\Drupal\insignregtest\Form\DeleteForm'
+    _title: 'Delete code'
+  requirements:
+    _permission: 'delete codes content'
+
+codes_export:
+  path: '/admin/content/codesexport'
+  defaults:
+    _controller: '\Drupal\insignregtest\Controller\AdminController::export'
+    _title: 'Export codes'
+  requirements:
+    _permission: 'export codes content'
+

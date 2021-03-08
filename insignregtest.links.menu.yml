@@ -1,0 +1,6 @@
+codes_list:
+  title: Insign Test Codes
+  description: Insign Test Module
+  parent: system.admin_content
+  route_name: codes_list
+  weight: 100

@@ -1,0 +1,5 @@
+codes_list:
+  title: Insign Test Codes
+  route_name: codes_list
+  base_route: system.admin_content
+  weight: 100

@@ -1,0 +1,84 @@
+<?php
+/**
+ * @file
+ * Contains \Drupal\insignregtest\insignregtest.install.
+ */
+
+/**
+ * Drupal Insignregtest module DB schema.
+ *
+ * @return array
+ *   Codes DB schema.
+ */
+
+
+
+function insignregtest_schema() {
+ 
+$schema['insigncodes'] = array(
+    'fields' => array(
+      'id'=>array(
+        'type'=>'serial',
+        'not null' => TRUE,
+      ),
+      'code'=>array(
+        'type' => 'varchar',
+        'length' => 60,
+        'not null' => TRUE,
+      ),
+      'uid'=>array(
+        'type' => 'int',
+        'length' => 10,
+        'not null' => FALSE,
+      ),
+      
+
+    ),
+    'primary key' => array('id'),
+  );
+
+
+  return $schema;
+
+}
+
+function insignregtest_install() {
+
+$default_code = array(
+"6wYO16Z4dg5ICQ8",
+"OWMSeRFnCARdRzZ",
+"nyqWE4TA0jcCP5A", 
+"qBD7eKtlKrzhnBC", 
+"9exuCciUc6qMmOC", 
+"QbgDL2TOCcNZ1iJ", 
+"gj312G9zmchnBG2", 
+"Ayj0gPK6CM3PMoI", 
+"iPS0Z7se5E3xg44",        
+"kL5AyfvBheooLBL", 
+"0gE34XpDwOrtGqY", 
+"epmKAnICWhSBBwY", 
+"f3UgOaVVZPgpO20", 
+"GLZMDXPeIZDGmdR", 
+"Bkjznw4PUGpjkAo", 
+"Vq7uS1QViatzCi3", 
+"310yJAl4nPwTLNb", 
+"IyqeBqN5wvCnkUw", 
+"cgJqqzmG9Y2h3kq", 
+"2ddyJH3CsN3kkoH", 
+"RHdfVxrGXVydTjC", 
+"bYrqlnSvL2Sq0yS", 
+"vOL2iKY0p163ZqN", 
+"hgvQNBGbUYgzGCe", 
+"KrXI6OoLaskTAth");
+
+foreach ($default_code as $code){
+
+db_insert('insigncodes')
+  ->fields(array(
+  'code' => $code,
+))
+  ->execute();
+
+}
+
+}
