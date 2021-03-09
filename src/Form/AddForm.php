@@ -105,7 +105,7 @@ class AddForm extends FormBase implements FormInterface, ContainerInjectionInter
         $form['code'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Code'),
-      '#default_value' => $codes ? $codes->code : '',
+      '#default_value' => $codes ? $codes['code'] : '',
       '#required' => true,
     ];
    

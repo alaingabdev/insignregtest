@@ -53,7 +53,7 @@ class InsignCodesRepositary extends ControllerBase
     {
         $result = $this->database->select('insigncodes', 's')
       ->fields('s')
-      ->execute();
+      ->execute()->fetchAll();
         return $result;
     }
 
@@ -82,10 +82,14 @@ class InsignCodesRepositary extends ControllerBase
      */
     public function get($id)
     {
-        $result = $this->database->query('SELECT * FROM {insigncodes} WHERE id = :id', [':id' => $id])
-      ->fetchAllAssoc('id');
+
+      $result = $this->database->select('insigncodes', 's')
+      ->fields('s',[ 'code','uid'])
+      ->condition('s.id',$id)
+      ->execute()->fetchAssoc();
+
         if ($result) {
-            return $result[$id];
+            return $result;
         } else {
             return false;
         }
@@ -102,10 +106,14 @@ class InsignCodesRepositary extends ControllerBase
      */
     public function getUser($uid)
     {
-        $result = $this->database->query('SELECT * FROM {users_field_data} WHERE uid = :uid', [':uid' => $uid])
-      ->fetchAllAssoc('uid');
+       
+      $result = $this->database->select('users_field_data', 'u')
+      ->fields('u',[ 'name','uid'])
+      ->condition('u.uid',$uid)
+      ->execute()->fetchAssoc();
+
         if ($result) {
-            return $result[$uid];
+            return $result;
         } else {
             return false;
         }
@@ -122,10 +130,14 @@ class InsignCodesRepositary extends ControllerBase
      */
     public function getDuplicatedCode($code)
     {
-      $result = $this->database->query('SELECT * FROM {insigncodes} WHERE code = :code', [':code' => $code])
-      ->fetchAllAssoc('code');
+
+      $result = $this->database->select('insigncodes', 's')
+      ->fields('s')
+      ->condition('s.code',$code)
+      ->execute()->fetchAssoc();
+
         if ($result) {
-            return $result[$code];
+            return $result;
         } else {
             return false;
         }

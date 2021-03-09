@@ -24,9 +24,6 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminController extends ControllerBase
 {
 
-
- 
-
     /**
      * Our database repository service.
      *
@@ -76,7 +73,6 @@ class AdminController extends ControllerBase
     public function content()
     {
       
-      
         // Add link top
         $url = Url::fromRoute('codes_add');
         $export_url = Url::fromRoute('codes_export');
@@ -122,9 +118,10 @@ class AdminController extends ControllerBase
             if ($content->uid) {
                 $user = $this->repo->getUser($content->uid);
                 if ($user) {
-                    $user_name = $user->name;
+                 
+                    $user_name = $user['name'];
                     $userUrl = Url::fromRoute('entity.user.canonical', ['user' => $content->uid]);
-                    $user_link = Link::fromTextAndUrl($user->name, $userUrl)->toString();
+                    $user_link = Link::fromTextAndUrl($user['name'], $userUrl)->toString();
                 }
             }
 
@@ -174,7 +171,7 @@ class AdminController extends ControllerBase
             if ($content->uid) {
                 $user = $this->repo->getUser($content->uid);
                 if ($user) {
-                    $user_name = $user->name;
+                    $user_name = $user['name'];
                 }
             }
             $output .= $content->id.",".$content->code.",".$user_name." \n";
